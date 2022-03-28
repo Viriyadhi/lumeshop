@@ -17,6 +17,11 @@ app.post("/user", userController.create); // create data user
 app.put("/user/:id", userController.update); //update data user :id
 app.delete("/user/:id", userController.delete); //delete data user :id
 
-app.get("/addresses/:id", addressesController.all);
+//addresses  routes
+app.get("/addresses", addressesController.all);
+app.get("/addresses/:id", addressesController.findById);
+app.post("/addresses", addressesController.create);
+app.put("/addresses/:id", addressesController.update);
+app.delete("/addresses/:id", addressesController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);

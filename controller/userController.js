@@ -86,7 +86,12 @@ exports.all = (req, res) => {
 
 exports.findById = (req, res) => {
     user.findByPk(req.params.id).then((data) => {
-        res.send(data);
+        if (data) {
+            res.send(data);
+        } else
+            res
+            .status(400)
+            .json({ msg: `No address with the id of ${req.params.id}` });
     });
 };
 
