@@ -3,6 +3,7 @@ const app = express();
 const PORT = 3000;
 const userController = require("./controller/userController");
 const addressesController = require("./controller/addressesController");
+const aboutController = require("./controller/aboutController");
 
 app.use(express.json());
 app.listen(PORT);
@@ -23,5 +24,12 @@ app.get("/addresses/:id", addressesController.findById);
 app.post("/addresses", addressesController.create);
 app.put("/addresses/:id", addressesController.update);
 app.delete("/addresses/:id", addressesController.delete);
+
+//about routes
+app.get("/about", aboutController.all);
+app.get("/about/:id", aboutController.findById);
+app.post("/about", aboutController.create);
+app.put("/about/:id", aboutController.update);
+app.delete("/about/:id", aboutController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);

@@ -13,8 +13,6 @@ module.exports = (sequelize, DataTypes) => {
     }
     about.init({
         desc_1: DataTypes.STRING,
-        desc_2: DataTypes.STRING,
-        desc_3: DataTypes.STRING,
     }, {
         sequelize,
         modelName: "about",
