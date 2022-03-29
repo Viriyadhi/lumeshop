@@ -11,18 +11,10 @@ module.exports = {
             products_id: {
                 type: Sequelize.INTEGER,
                 foreignKey: true,
-                references: {
-                    model: "products",
-                    key: "id",
-                },
             },
             user_id: {
                 type: Sequelize.INTEGER,
                 foreignKey: true,
-                references: {
-                    model: "users",
-                    key: "id",
-                },
             },
             createdAt: {
                 allowNull: false,
