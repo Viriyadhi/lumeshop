@@ -11,6 +11,8 @@ const orderController = require("./controller/orderController");
 const orderPromoController = require("./controller/order-promoController");
 const paymentMethodController = require("./controller/paymentMethodsController");
 const products_price = require("./controller/productsPriceController");
+const promosController = require("./controller/promoController");
+
 app.use(express.json());
 app.listen(PORT);
 
@@ -67,11 +69,11 @@ app.put("/order/:id", orderController.update);
 app.delete("/order/:id", orderController.delete);
 
 //promos controller
-app.get("/promos", orderPromoController.all);
-app.get("/promos/:id", orderPromoController.findById);
-app.post("/promos", orderPromoController.create);
-app.put("/promos/:id", orderPromoController.update);
-app.delete("/promos/:id", orderPromoController.delete);
+app.get("/orderPromo", orderPromoController.all);
+app.get("/orderPromo/:id", orderPromoController.findById);
+app.post("/orderPromo", orderPromoController.create);
+app.put("/orderPromo/:id", orderPromoController.update);
+app.delete("/orderPromo/:id", orderPromoController.delete);
 
 //payment method controller
 app.get("/payment-method", paymentMethodController.all);
@@ -86,5 +88,12 @@ app.get("/productsPrice/:id", products_price.findById);
 app.post("/productsPrice", products_price.create);
 app.put("/productsPrice/:id", products_price.update);
 app.delete("/productsPrice/:id", products_price.delete);
+
+//promos controller
+app.get("/promos", promosController.all);
+app.get("/promos/:id", promosController.findById);
+app.post("/promos", promosController.create);
+app.put("/promos/:id", promosController.update);
+app.delete("/promos/:id", promosController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
