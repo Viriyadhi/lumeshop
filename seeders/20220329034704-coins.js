@@ -14,12 +14,6 @@ module.exports = {
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
-            {
-                value_coins: 30000,
-                user_id: 3,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-            },
         ]);
     },
 
