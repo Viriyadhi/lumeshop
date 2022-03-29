@@ -7,6 +7,8 @@ const aboutController = require("./controller/aboutController");
 const cartController = require("./controller/cartController");
 const categoryController = require("./controller/categoryController");
 const coinsController = require("./controller/coinsController");
+const orderController = require("./controller/orderController");
+
 app.use(express.json());
 app.listen(PORT);
 
@@ -54,5 +56,12 @@ app.get("/coins/:id", coinsController.findById);
 app.post("/coins", coinsController.create);
 app.put("/coins/:id", coinsController.update);
 app.delete("/coins/:id", coinsController.delete);
+
+//order controller
+app.get("/order", orderController.all);
+app.get("/order/:id", orderController.findById);
+app.post("/order", orderController.create);
+app.put("/order/:id", orderController.update);
+app.delete("/order/:id", orderController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
