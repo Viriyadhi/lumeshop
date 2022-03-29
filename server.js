@@ -9,6 +9,7 @@ const categoryController = require("./controller/categoryController");
 const coinsController = require("./controller/coinsController");
 const orderController = require("./controller/orderController");
 const orderPromoController = require("./controller/order-promoController");
+const paymentMethodController = require("./controller/paymentMethodsController");
 
 app.use(express.json());
 app.listen(PORT);
@@ -71,5 +72,12 @@ app.get("/promos/:id", orderPromoController.findById);
 app.post("/promos", orderPromoController.create);
 app.put("/promos/:id", orderPromoController.update);
 app.delete("/promos/:id", orderPromoController.delete);
+
+//payment method controller
+app.get("/payment-method", paymentMethodController.all);
+app.get("/payment-method/:id", paymentMethodController.findById);
+app.post("/payment-method", paymentMethodController.create);
+app.put("/payment-method/:id", paymentMethodController.update);
+app.delete("/payment-method/:id", paymentMethodController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
