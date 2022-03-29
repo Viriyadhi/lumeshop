@@ -4,6 +4,7 @@ const PORT = 3000;
 const userController = require("./controller/userController");
 const addressesController = require("./controller/addressesController");
 const aboutController = require("./controller/aboutController");
+const cartController = require("./controller/cartController");
 
 app.use(express.json());
 app.listen(PORT);
@@ -31,5 +32,12 @@ app.get("/about/:id", aboutController.findById);
 app.post("/about", aboutController.create);
 app.put("/about/:id", aboutController.update);
 app.delete("/about/:id", aboutController.delete);
+
+//cart routes
+app.get("/cart", cartController.all);
+app.get("/cart/:id", cartController.findById);
+app.post("/cart", cartController.create);
+app.put("/cart/:id", cartController.update);
+app.delete("/cart/:id", cartController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
