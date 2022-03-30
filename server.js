@@ -1,6 +1,9 @@
 const express = require("express");
+const formidable = require("express-formidable");
+
 const app = express();
 const PORT = 3000;
+
 const userController = require("./controller/userController");
 const addressesController = require("./controller/addressesController");
 const aboutController = require("./controller/aboutController");
@@ -13,13 +16,20 @@ const paymentMethodController = require("./controller/paymentMethodsController")
 const products_price = require("./controller/productsPriceController");
 const promosController = require("./controller/promoController");
 const shippingController = require("./controller/shippingCargoController");
+const productImageController = require("./controller/productImgController");
+const productController = require("./controller/productsController");
 
 app.use(express.json());
+app.use(formidable());
 app.listen(PORT);
 
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
+
+//get the static files from public folder
+app.use("/static/img", express.static(__dirname + "/public/images"));
+
 //user routes
 app.get("/user", userController.all); // show Alldata user
 app.get("/user/:id", userController.findById); // show data user :id
@@ -103,5 +113,19 @@ app.get("/shippingCargo/:id", shippingController.findById);
 app.post("/shippingCargo", shippingController.create);
 app.put("/shippingCargo/:id", shippingController.update);
 app.delete("/shippingCargo/:id", shippingController.delete);
+
+//product controller
+app.get("/product", productController.all);
+app.get("/product/:id", productController.findById);
+app.post("/product", productController.create);
+app.put("/product/:id", productController.update);
+app.delete("/product/:id", productController.delete);
+
+//productImage controller
+app.get("/productImage", productImageController.all);
+app.get("/productImage/:id", productImageController.findById);
+app.post("/productImage", productImageController.create);
+app.put("/productImage/:id", productImageController.update);
+app.delete("/productImage/:id", productImageController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
