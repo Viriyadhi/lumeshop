@@ -79,87 +79,87 @@ const { user } = require("../models");
 // };
 
 exports.all = (req, res) => {
-    user.findAll().then((data) => {
-        res.send(data);
-    });
+  user.findAll().then((data) => {
+    res.send(data);
+  });
 };
 
 exports.findById = (req, res) => {
-    user.findByPk(req.params.id).then((data) => {
-        if (data) {
-            res.send(data);
-        } else
-            res
-            .status(400)
-            .json({ msg: `No address with the id of ${req.params.id}` });
-    });
+  user.findByPk(req.params.id).then((data) => {
+    if (data) {
+      res.send(data);
+    } else
+      res
+        .status(400)
+        .json({ msg: `No address with the id of ${req.params.id}` });
+  });
 };
 
 exports.create = (req, res) => {
-    const newUser = {
-        id: user.length,
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        username: req.body.username,
-        birth_date: req.body.birth_date,
-        phone_number: req.body.phone_number,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-    };
-    if (!newUser.name ||
-        !newUser.email ||
-        !newUser.password ||
-        !newUser.username ||
-        !newUser.birth_date ||
-        !newUser.phone_number
-    ) {
-        return res.status(400).json({ msg: "Please fill all the requirements" });
-    }
-    user.create(newUser).then((data) => {
-        res.send(data);
-    });
+  const newUser = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    username: req.body.username,
+    birth_date: req.body.birth_date,
+    phone_number: req.body.phone_number,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+  if (
+    !newUser.name ||
+    !newUser.email ||
+    !newUser.password ||
+    !newUser.username ||
+    !newUser.birth_date ||
+    !newUser.phone_number
+  ) {
+    return res.status(400).json({ msg: "Please fill all the requirements" });
+  }
+  user.create(newUser).then((data) => {
+    res.send(data);
+  });
 };
 
 exports.update = (req, res) => {
-    let id = req.params.id;
-    user.findByPk(id).then((data) => {
-        if (data) {
-            data
-                .update({
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: req.body.password,
-                    username: req.body.username,
-                    birth_date: req.body.birth_date,
-                    phone_number: req.body.phone_number,
-                })
-                .then((data) => {
-                    res.send(data);
-                });
-        } else {
-            res.status(404).json({ msg: "User not found" });
-        }
-    });
+  let id = req.params.id;
+  user.findByPk(id).then((data) => {
+    if (data) {
+      data
+        .update({
+          name: req.body.name,
+          email: req.body.email,
+          password: req.body.password,
+          username: req.body.username,
+          birth_date: req.body.birth_date,
+          phone_number: req.body.phone_number,
+        })
+        .then((data) => {
+          res.send(data);
+        });
+    } else {
+      res.status(404).json({ msg: "User not found" });
+    }
+  });
 };
 
 exports.delete = (req, res) => {
-    let id = req.params.id;
-    user.findByPk(id).then((data) => {
-        if (data) {
-            user
-                .destroy({
-                    where: {
-                        id: id,
-                    },
-                })
-                .then(() => {
-                    res.send(`The user with the id of ${id} has been deleted`);
-                });
-        } else {
-            res
-                .status(404)
-                .json({ msg: `No user found with the id of  ${req.params.id}` });
-        }
-    });
+  let id = req.params.id;
+  user.findByPk(id).then((data) => {
+    if (data) {
+      user
+        .destroy({
+          where: {
+            id: id,
+          },
+        })
+        .then(() => {
+          res.send(`The user with the id of ${id} has been deleted`);
+        });
+    } else {
+      res
+        .status(404)
+        .json({ msg: `No user found with the id of  ${req.params.id}` });
+    }
+  });
 };
