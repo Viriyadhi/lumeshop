@@ -28,7 +28,6 @@ exports.create = (req, res) => {
         res.status(400).send({ msg: "Please fill all the fields" });
     } else {
         products_price.create(newProductPrices).then((data) => {
-            res.status(200).json({ msg: "Data has been Created " });
             res.send(data);
         });
     }

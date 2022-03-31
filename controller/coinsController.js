@@ -19,8 +19,8 @@ exports.findById = (req, res) => {
 
 exports.create = (req, res) => {
     const newCoins = {
-        value_coins: req.fields_coins,
-        user_id: req.fields_id,
+        value_coins: req.fields.value_coins,
+        user_id: req.fields.user_id,
     };
     if (!newCoins.user_id) {
         res.status(400).send({ msg: "Please fill all the fields" });
@@ -36,8 +36,8 @@ exports.update = (req, res) => {
         if (data) {
             data
                 .update({
-                    value_coins: req.fields_coins,
-                    user_id: req.fields_id,
+                    value_coins: req.fields.value_coins,
+                    user_id: req.fields.user_id,
                 })
                 .then((data) => {
                     res.send(data);
