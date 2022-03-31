@@ -3,7 +3,7 @@ const formidable = require("express-formidable");
 
 const app = express();
 const PORT = 3000;
-
+const logger = require("./middleware/middleware");
 const userController = require("./controller/userController");
 const addressesController = require("./controller/addressesController");
 const aboutController = require("./controller/aboutController");
@@ -18,11 +18,12 @@ const promosController = require("./controller/promoController");
 const shippingController = require("./controller/shippingCargoController");
 const productImageController = require("./controller/productImgController");
 const productController = require("./controller/productsController");
+const faqController = require("./controller/faqController");
 
-app.use(express.json());
+app.use(logger);
 app.use(formidable());
+app.use(express.json());
 app.listen(PORT);
-
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
@@ -75,7 +76,7 @@ app.delete("/coins/:id", coinsController.delete);
 //order controller
 app.get("/order", orderController.all);
 app.get("/order/:id", orderController.findById);
-app.post("/order", orderController.create);
+app.post("/order", express.json(), orderController.create);
 app.put("/order/:id", orderController.update);
 app.delete("/order/:id", orderController.delete);
 
@@ -120,6 +121,13 @@ app.get("/product/:id", productController.findById);
 app.post("/product", productController.create);
 app.put("/product/:id", productController.update);
 app.delete("/product/:id", productController.delete);
+
+//faq controller
+app.get("/faq", faqController.all);
+app.get("/faq/:id", faqController.findById);
+app.post("/faq", faqController.create);
+app.put("/faq/:id", faqController.update);
+app.delete("/faq/:id", faqController.delete);
 
 //productImage controller
 app.get("/productImage", productImageController.all);
