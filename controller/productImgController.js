@@ -62,11 +62,9 @@ exports.update = (req, res) => {
                     res.send(data);
                 });
         } else {
-            res
-                .status(404)
-                .json({
-                    msg: `No Product Image found with the id of  ${req.params.id}`,
-                });
+            res.status(404).json({
+                msg: `No Product Image found with the id of  ${req.params.id}`,
+            });
         }
     });
 };

@@ -36,8 +36,8 @@ exports.update = (req, res) => {
         if (data) {
             data
                 .update({
-                    products_id: req.fields.products_id,
-                    user_id: req.fields.user_id,
+                    question: req.fields.question,
+                    answer: req.fields.answer,
                 })
                 .then((data) => {
                     res.send(data);
