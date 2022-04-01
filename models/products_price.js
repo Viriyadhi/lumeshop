@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         buy_price: DataTypes.STRING,
         publish_price: DataTypes.STRING,
         price_type: DataTypes.ENUM("retail", "wholesale"),
-
         products_id: DataTypes.INTEGER,
     }, {
         sequelize,
