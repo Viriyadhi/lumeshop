@@ -3,12 +3,14 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.bulkInsert("order_promos", [{
-                used_voucher: 0,
+                store_voucher_id: 1,
+                product_voucher_id: 1,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
-                used_voucher: 1,
+                store_voucher_id: 1,
+                product_voucher_id: 1,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },

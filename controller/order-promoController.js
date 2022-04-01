@@ -19,9 +19,10 @@ exports.findById = (req, res) => {
 
 exports.create = (req, res) => {
     const newPromo = {
-        used_voucher: req.fields.used_voucher,
+        store_voucher_id: req.fields.store_voucher_id,
+        product_voucher_id: req.fields.product_voucher_id,
     };
-    if (!newPromo.used_voucher) {
+    if (!newPromo.store_voucher_id || !newPromo.product_voucher_id) {
         res.status(400).send({ msg: "Please fill all the fields" });
     } else {
         order_promo.create(newPromo).then((data) => {
@@ -36,7 +37,8 @@ exports.update = (req, res) => {
         if (data) {
             data
                 .update({
-                    used_voucher: req.fields.used_voucher,
+                    store_voucher_id: req.fields.store_voucher_id,
+                    product_voucher_id: req.fields.product_voucher_id,
                 })
                 .then((data) => {
                     res.send(data);

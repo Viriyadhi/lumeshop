@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     order_promo.init({
-        used_voucher: DataTypes.INTEGER,
+        store_voucher_id: DataTypes.INTEGER,
+        product_voucher_id: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: "order_promo",

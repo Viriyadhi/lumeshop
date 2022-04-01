@@ -8,7 +8,10 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
-            used_voucher: {
+            store_voucher_id: {
+                type: Sequelize.INTEGER,
+            },
+            product_voucher_id: {
                 type: Sequelize.INTEGER,
             },
             createdAt: {
