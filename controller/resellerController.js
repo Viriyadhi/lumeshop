@@ -12,7 +12,9 @@ exports.findById = (req, res) => {
         if (data) {
             res.send(data);
         } else {
-            res.status(400).json({ msg: `No Cart with the id of ${req.params.id}` });
+            res
+                .status(400)
+                .json({ msg: `No Reseller with the id of ${req.params.id}` });
         }
     });
 };
@@ -42,7 +44,7 @@ exports.update = (req, res) => {
                     res.send(data);
                 });
         } else {
-            res.status(404).json({ msg: "Cart not found" });
+            res.status(404).json({ msg: "Reseller not found" });
         }
     });
 };
@@ -59,13 +61,13 @@ exports.delete = (req, res) => {
                 })
                 .then(() => {
                     res.status(200).json({
-                        msg: ` Cart  with the id of ${req.params.id} has been deleted `,
+                        msg: ` Reseller  with the id of ${req.params.id} has been deleted `,
                     });
                 });
         } else {
             res
                 .status(404)
-                .json({ msg: `No Cart found with the id of  ${req.params.id}` });
+                .json({ msg: `No Reseller found with the id of  ${req.params.id}` });
         }
     });
 };
