@@ -12,9 +12,7 @@ exports.findById = (req, res) => {
         if (data) {
             res.send(data);
         } else {
-            res
-                .status(400)
-                .json({ msg: `No address with the id of ${req.params.id}` });
+            res.status(400).json({ msg: `No About with the id of ${req.params.id}` });
         }
     });
 };
