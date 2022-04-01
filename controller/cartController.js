@@ -20,9 +20,10 @@ exports.findById = (req, res) => {
 exports.create = (req, res) => {
     const newCart = {
         products_id: req.fields.products_id,
-        user_id: req.fields.user_id,
+        customer_id: req.fields.customer_id,
+        reseller_id: req.fields.reseller_id,
     };
-    if (!newCart.products_id || !newCart.user_id) {
+    if (!newCart.products_id || !newCart.customer_id || !newCart.reseller_id) {
         res.status(400).send({ msg: "Please fill all the fields" });
     }
     cart.create(newCart).then((data) => {
@@ -37,7 +38,8 @@ exports.update = (req, res) => {
             data
                 .update({
                     products_id: req.fields.products_id,
-                    user_id: req.fields.user_id,
+                    customer_id: req.fields.customer_id,
+                    reseller_id: req.fields.reseller_id,
                 })
                 .then((data) => {
                     res.send(data);

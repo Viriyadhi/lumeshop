@@ -12,7 +12,11 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 foreignKey: true,
             },
-            user_id: {
+            customer_id: {
+                type: Sequelize.INTEGER,
+                foreignKey: true,
+            },
+            reseller_id: {
                 type: Sequelize.INTEGER,
                 foreignKey: true,
             },
