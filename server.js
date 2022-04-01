@@ -24,6 +24,7 @@ const favoriteController = require("./controller/favoriteController");
 const customerController = require("./controller/customerController");
 const hasVoucherController = require("./controller/hasVoucherController");
 const voucherController = require("./controller/voucherController");
+const depositeController = require("./controller/depositeController");
 
 app.use(logger);
 app.use(formidable());
@@ -175,5 +176,12 @@ app.get("/voucher/:id", voucherController.findById);
 app.post("/voucher", voucherController.create);
 app.put("/voucher/:id", voucherController.update);
 app.delete("/voucher/:id", voucherController.delete);
+
+//deposite Controller
+app.get("/deposite", depositeController.all);
+app.get("/deposite/:id", depositeController.findById);
+app.post("/deposite", depositeController.create);
+app.put("/deposite/:id", depositeController.update);
+app.delete("/deposite/:id", depositeController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
