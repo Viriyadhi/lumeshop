@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         jalan: DataTypes.STRING,
         kode_pos: DataTypes.INTEGER,
         nama_alamat: DataTypes.STRING,
-        user_id: DataTypes.INTEGER,
+        customer_id: DataTypes.INTEGER,
+        reseller_id: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: "addresses",

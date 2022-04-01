@@ -36,13 +36,11 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.STRING,
             },
-            user_id: {
+            customer_id: {
                 type: Sequelize.INTEGER,
-                foreignKey: true,
-                references: {
-                    model: "users",
-                    key: "id",
-                },
+            },
+            reseller_id: {
+                type: Sequelize.INTEGER,
             },
             createdAt: {
                 allowNull: false,

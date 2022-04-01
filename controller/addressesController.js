@@ -128,7 +128,8 @@ exports.create = (req, res) => {
         jalan: req.fields.jalan,
         kode_pos: req.fields.kode_pos,
         nama_alamat: req.fields.nama_alamat,
-        user_id: req.fields.user_id,
+        customer_id: req.fields.customer_id,
+        reseller_id: req.fields.reseller_id,
     };
     if (!newAddresses.provinsi ||
         !newAddresses.kota ||
@@ -157,7 +158,8 @@ exports.update = (req, res) => {
                     jalan: req.fields.jalan,
                     kode_pos: req.fields.kode_pos,
                     nama_alamat: req.fields.nama_alamat,
-                    user_id: req.fields.user_id,
+                    customer_id: req.fields.customer_id,
+                    reseller_id: req.fields.reseller_id,
                 })
                 .then((data) => {
                     res.send(data);
