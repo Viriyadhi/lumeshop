@@ -11,7 +11,10 @@ module.exports = {
             value_coins: {
                 type: Sequelize.INTEGER,
             },
-            user_id: {
+            customer_id: {
+                type: Sequelize.INTEGER,
+            },
+            reseller_id: {
                 type: Sequelize.INTEGER,
             },
             createdAt: {

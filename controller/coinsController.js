@@ -20,9 +20,10 @@ exports.findById = (req, res) => {
 exports.create = (req, res) => {
     const newCoins = {
         value_coins: req.fields.value_coins,
-        user_id: req.fields.user_id,
+        customer_id: req.fields.customer_id,
+        reseller_id: req.fields.reseller_id,
     };
-    if (!newCoins.user_id) {
+    if (!newCoins.value_coins || !newCoins.customer_id || !newCoins.reseller_id) {
         res.status(400).send({ msg: "Please fill all the fields" });
     }
     coins.create(newCoins).then((data) => {
@@ -37,7 +38,8 @@ exports.update = (req, res) => {
             data
                 .update({
                     value_coins: req.fields.value_coins,
-                    user_id: req.fields.user_id,
+                    customer_id: req.fields.customer_id,
+                    reseller_id: req.fields.reseller_id,
                 })
                 .then((data) => {
                     res.send(data);

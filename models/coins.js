@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     coins.init({
         value_coins: DataTypes.INTEGER,
-        user_id: DataTypes.INTEGER,
+        reseller_id: DataTypes.INTEGER,
+        customer_id: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: "coins",
