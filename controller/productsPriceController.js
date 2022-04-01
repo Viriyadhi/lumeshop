@@ -21,7 +21,10 @@ exports.findById = (req, res) => {
 
 exports.create = (req, res) => {
     const newProductPrices = {
-        harga_jual: req.fields.harga_jual,
+        price: req.fields.price,
+        buy_price: req.fields.buy_price,
+        publish_price: req.fields.publish_price,
+        price_type: req.fields.price_type,
         products_id: req.fields.products_id,
     };
     if (!newProductPrices.harga_jual || !newProductPrices.products_id) {
@@ -39,7 +42,10 @@ exports.update = (req, res) => {
         if (data) {
             data
                 .update({
-                    harga_jual: req.fields.harga_jual,
+                    price: req.fields.price,
+                    buy_price: req.fields.buy_price,
+                    publish_price: req.fields.publish_price,
+                    price_type: req.fields.price_type,
                     products_id: req.fields.products_id,
                 })
                 .then((data) => {

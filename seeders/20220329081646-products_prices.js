@@ -3,13 +3,19 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.bulkInsert("products_prices", [{
-                harga_jual: "100000",
+                price: "100",
+                buy_price: "100",
+                publish_price: "100",
+                price_type: "retail",
                 products_id: 1,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
-                harga_jual: "200000",
+                price: "200",
+                buy_price: "180",
+                publish_price: "200",
+                price_type: "wholesale",
                 products_id: 2,
                 createdAt: new Date(),
                 updatedAt: new Date(),
