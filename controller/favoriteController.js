@@ -1,59 +1,58 @@
-const { reseller } = require("../models");
+const { favorite } = require("../models");
 
 exports.all = (req, res) => {
-    reseller.findAll().then((data) => {
+    favorite.findAll().then((data) => {
         res.send(data);
     });
 };
 
 exports.findById = (req, res) => {
     let id = req.params.id;
-    reseller.findByPk(id).then((data) => {
+    favorite.findByPk(id).then((data) => {
         if (data) {
             res.send(data);
         } else {
             res
                 .status(400)
-                .json({ msg: `No Reseller with the id of ${req.params.id}` });
+                .json({ msg: `No Favorite with the id of ${req.params.id}` });
         }
     });
 };
 
 exports.create = (req, res) => {
-    const newReseller = {
-        shoppe_link: req.fields.shoppe_link,
-        tokped_link: req.fields.tokped_link,
-        bukalapak_link: req.fields.bukalapak_link,
+    const newFavorite = {
+        products_id: req.fields.products_id,
     };
-    reseller.create(newReseller).then((data) => {
+    if (!newFavorite.products_id) {
+        res.status(400).send({ msg: "Please fill all the fields" });
+    }
+    favorite.create(newFavorite).then((data) => {
         res.send(data);
     });
 };
 
 exports.update = (req, res) => {
     let id = req.params.id;
-    reseller.findByPk(id).then((data) => {
+    favorite.findByPk(id).then((data) => {
         if (data) {
             data
                 .update({
-                    shoppe_link: req.fields.shoppe_link,
-                    tokped_link: req.fields.tokped_link,
-                    bukalapak_link: req.fields.bukalapak_link,
+                    products_id: req.fields.products_id,
                 })
                 .then((data) => {
                     res.send(data);
                 });
         } else {
-            res.status(404).json({ msg: "Reseller not found" });
+            res.status(404).json({ msg: "Favorite not found" });
         }
     });
 };
 
 exports.delete = (req, res) => {
     let id = req.params.id;
-    reseller.findByPk(id).then((data) => {
+    favorite.findByPk(id).then((data) => {
         if (data) {
-            reseller
+            favorite
                 .destroy({
                     where: {
                         id: id,
@@ -61,13 +60,13 @@ exports.delete = (req, res) => {
                 })
                 .then(() => {
                     res.status(200).json({
-                        msg: ` Reseller  with the id of ${req.params.id} has been deleted `,
+                        msg: ` Favorite  with the id of ${req.params.id} has been deleted `,
                     });
                 });
         } else {
             res
                 .status(404)
-                .json({ msg: `No Reseller found with the id of  ${req.params.id}` });
+                .json({ msg: `No Favorite found with the id of  ${req.params.id}` });
         }
     });
 };

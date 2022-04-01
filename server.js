@@ -20,6 +20,7 @@ const productImageController = require("./controller/productImgController");
 const productController = require("./controller/productsController");
 const faqController = require("./controller/faqController");
 const resellerController = require("./controller/resellerController");
+const favoriteController = require("./controller/favoriteController");
 
 app.use(logger);
 app.use(formidable());
@@ -143,5 +144,12 @@ app.get("/reseller/:id", resellerController.findById);
 app.post("/reseller", resellerController.create);
 app.put("/reseller/:id", resellerController.update);
 app.delete("/reseller/:id", resellerController.delete);
+
+//favorite controller
+app.get("/favorite", favoriteController.all);
+app.get("/favorite/:id", favoriteController.findById);
+app.post("/favorite", favoriteController.create);
+app.put("/favorite/:id", favoriteController.update);
+app.delete("/favorite/:id", favoriteController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
