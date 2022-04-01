@@ -8,7 +8,13 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
-            jenis_pembayaran: {
+            nama: {
+                type: Sequelize.STRING,
+            },
+            nomor_rekening: {
+                type: Sequelize.STRING,
+            },
+            nama_rekening: {
                 type: Sequelize.STRING,
             },
             createdAt: {

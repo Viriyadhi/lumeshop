@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     payment_methods.init({
-        jenis_pembayaran: DataTypes.STRING,
+        nama: DataTypes.STRING,
+        nomor_rekening: DataTypes.STRING,
+        nama_rekening: DataTypes.STRING,
     }, {
         sequelize,
         modelName: "payment_methods",

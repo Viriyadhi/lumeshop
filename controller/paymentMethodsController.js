@@ -21,9 +21,14 @@ exports.findById = (req, res) => {
 
 exports.create = (req, res) => {
     const newPayment_methods = {
-        jenis_pembayaran: req.fields.jenis_pembayaran,
+        nama: req.fields.nama,
+        nomor_rekening: req.fields.nomor_rekening,
+        nama_rekening: req.fields.nama_rekening,
     };
-    if (!newPayment_methods.jenis_pembayaran) {
+    if (!newPayment_methods.nama ||
+        !newPayment_methods.nomor_rekening ||
+        !newPayment_methods.nama_rekening
+    ) {
         res.status(400).send({ msg: "Please fill all the fields" });
     }
     payment_methods.create(newPayment_methods).then((data) => {
@@ -37,7 +42,9 @@ exports.update = (req, res) => {
         if (data) {
             data
                 .update({
-                    jenis_pembayaran: req.fields.jenis_pembayaran,
+                    nama: req.fields.nama,
+                    nomor_rekening: req.fields.nomor_rekening,
+                    nama_rekening: req.fields.nama_rekening,
                 })
                 .then((data) => {
                     res.send(data);

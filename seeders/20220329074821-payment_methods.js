@@ -3,17 +3,23 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.bulkInsert("payment_methods", [{
-                jenis_pembayaran: "Transfer Bank",
+                nama: "BCA",
+                nomor_rekening: "123456789",
+                nama_rekening: "PT. BCA",
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
-                jenis_pembayaran: "Cash",
+                nama: "BNI",
+                nomor_rekening: "123456789",
+                nama_rekening: "PT. BNI",
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
-                jenis_pembayaran: "Kredit",
+                nama: "BRI",
+                nomor_rekening: "123456789",
+                nama_rekening: "PT. BRI",
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
