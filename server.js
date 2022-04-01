@@ -22,6 +22,7 @@ const faqController = require("./controller/faqController");
 const resellerController = require("./controller/resellerController");
 const favoriteController = require("./controller/favoriteController");
 const customerController = require("./controller/customerController");
+const hasVoucherController = require("./controller/hasVoucherController");
 
 app.use(logger);
 app.use(formidable());
@@ -159,5 +160,12 @@ app.get("/customer/:id", customerController.findById);
 app.post("/customer", customerController.create);
 app.put("/customer/:id", customerController.update);
 app.delete("/customer/:id", customerController.delete);
+
+//hasVoucher Controller
+app.get("/hasVoucher", hasVoucherController.all);
+app.get("/hasVoucher/:id", hasVoucherController.findById);
+app.post("/hasVoucher", hasVoucherController.create);
+app.put("/hasVoucher/:id", hasVoucherController.update);
+app.delete("/hasVoucher/:id", hasVoucherController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
