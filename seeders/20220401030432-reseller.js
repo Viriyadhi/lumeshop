@@ -3,6 +3,7 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.bulkInsert("resellers", [{
+                user_id: 1,
                 shoppe_link: "https://www.shoppe.id/",
                 tokped_link: "https://www.tokopedia.com/",
                 bukalapak_link: "https://www.bukalapak.com/",
@@ -10,6 +11,7 @@ module.exports = {
                 updatedAt: new Date(),
             },
             {
+                user_id: 2,
                 shoppe_link: "https://www.shoppe.id/2",
                 tokped_link: "https://www.tokopedia.com/2",
                 bukalapak_link: "https://www.bukalapak.com/2",

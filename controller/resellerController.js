@@ -21,6 +21,7 @@ exports.findById = (req, res) => {
 
 exports.create = (req, res) => {
     const newReseller = {
+        user_id: req.fields.user_id,
         shoppe_link: req.fields.shoppe_link,
         tokped_link: req.fields.tokped_link,
         bukalapak_link: req.fields.bukalapak_link,
@@ -36,6 +37,7 @@ exports.update = (req, res) => {
         if (data) {
             data
                 .update({
+                    user_id: req.fields.user_id,
                     shoppe_link: req.fields.shoppe_link,
                     tokped_link: req.fields.tokped_link,
                     bukalapak_link: req.fields.bukalapak_link,
