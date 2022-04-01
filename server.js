@@ -19,6 +19,7 @@ const shippingController = require("./controller/shippingCargoController");
 const productImageController = require("./controller/productImgController");
 const productController = require("./controller/productsController");
 const faqController = require("./controller/faqController");
+const resellerController = require("./controller/resellerController");
 
 app.use(logger);
 app.use(formidable());
@@ -135,5 +136,12 @@ app.get("/productImage/:id", productImageController.findById);
 app.post("/productImage", productImageController.create);
 app.put("/productImage/:id", productImageController.update);
 app.delete("/productImage/:id", productImageController.delete);
+
+//reseller controller
+app.get("/reseller", resellerController.all);
+app.get("/reseller/:id", resellerController.findById);
+app.post("/reseller", resellerController.create);
+app.put("/reseller/:id", resellerController.update);
+app.delete("/reseller/:id", resellerController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
