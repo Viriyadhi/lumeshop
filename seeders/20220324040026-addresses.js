@@ -46,7 +46,7 @@ module.exports = {
                 jalan: "Jl. Balikpapan",
                 kode_pos: "40123",
                 nama_alamat: "Alamat 1",
-                user_id: 3,
+                user_id: 1,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
