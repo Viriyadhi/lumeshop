@@ -1,23 +1,23 @@
 {
-    "test": {
-        "database": "lummoshop",
-        "host": "127.0.0.1",
-        "username": "root",
-        "password": "",
-        "dialect": "mysql"
-    },
-    "development": {
-        "database": "lummoshop",
-        "host": "127.0.0.1",
-        "username": "root",
-        "password": "EXPLODINGTNT123",
-        "dialect": "mysql"
-    },
-    "production": {
-        "database": "lummoshop",
-        "host": "127.0.0.1",
-        "username": "root",
-        "password": "",
-        "dialect": "mysql"
-    }
+  "test": {
+    "database": "lummoshop",
+    "host": "127.0.0.1",
+    "username": "root",
+    "password": "",
+    "dialect": "mysql"
+  },
+  "development": {
+    "database": "lummoshop",
+    "host": "127.0.0.1",
+    "username": "root",
+    "password": "EXPLODINGTNT123",
+    "dialect": "mysql"
+  },
+  "production": {
+    "database": "lummoshop",
+    "host": "127.0.0.1",
+    "username": "root",
+    "password": "",
+    "dialect": "mysql"
+  }
 }
