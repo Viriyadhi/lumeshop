@@ -1,6 +1,11 @@
 const express = require("express");
 const formidable = require("express-formidable");
-
+const bodyParser = require("body-parser");
+const { validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+const db = require("./dbConnection");
 const app = express();
 const PORT = 3000;
 const logger = require("./middleware/middleware");
@@ -29,6 +34,7 @@ const depositeController = require("./controller/depositeController");
 app.use(logger);
 app.use(formidable());
 app.use(express.json());
+app.use(cors());
 app.listen(PORT);
 app.get("/", (req, res) => {
     res.send("Hello World");
@@ -38,11 +44,13 @@ app.get("/", (req, res) => {
 app.use("/static/img", express.static(__dirname + "/public/images"));
 
 //user routes
-app.get("/user", userController.all); // show Alldata user
-app.get("/user/:id", userController.findById); // show data user :id
-app.post("/user", userController.create); // create data user
-app.put("/user/:id", userController.update); //update data user :id
-app.delete("/user/:id", userController.delete); //delete data user :id
+app.get("/user", userController.all);
+app.get("/user/:id", userController.findById);
+app.post("/user", userController.create);
+app.post("/user/login", userController.login);
+app.post("/user/auth", userController.auth);
+app.put("/user/:id", userController.update);
+app.delete("/user/:id", userController.delete);
 
 //addresses  routes
 app.get("/addresses", addressesController.all);
@@ -185,3 +193,130 @@ app.put("/deposite/:id", depositeController.update);
 app.delete("/deposite/:id", depositeController.delete);
 
 console.log(`Server is running on http://localhost:${PORT}`);
+
+// app.post("/register", signupValidation, (req, res, next) => {
+//   db.query(
+//     `SELECT * FROM users WHERE LOWER(email) = LOWER(${db.escape(
+//       req.fields.email
+//     )});`,
+//     (err, result) => {
+//       if (result.length) {
+//         return res.status(409).send({
+//           msg: "This user is already in use!",
+//         });
+//       } else {
+//         // username is available
+//         bcrypt.hash(req.fields.password, 10, (err, hash) => {
+//           if (err) {
+//             return res.status(500).send({
+//               msg: err,
+//             });
+//           } else {
+//             // has hashed pw => add to database
+//             db.query(
+//               `INSERT INTO users (name, email, password, username, birth_date, phone_number, createdAt, updatedAt) VALUES
+//               (
+//                 '${req.fields.name}',
+//                  ${db.escape(req.fields.email)},
+//                  ${db.escape(hash)},
+//                   ${db.escape(req.fields.username)},
+//                   ${db.escape(req.fields.birth_date)},
+//                   ${db.escape(req.fields.phone_number)},
+//                   ${db.escape(req.fields.createdAt)},
+//                   ${db.escape(req.fields.updatedAt)}
+
+//                   )`,
+//               (err, result) => {
+//                 if (err) {
+//                   throw err;
+//                   return res.status(400).send({
+//                     msg: err,
+//                   });
+//                 }
+//                 return res.status(201).send({
+//                   msg: "The user has been registerd !",
+//                 });
+//               }
+//             );
+//           }
+//         });
+//       }
+//     }
+//   );
+// });
+
+// app.post("/login", loginValidation, (req, res, next) => {
+//     db.query(
+//         `SELECT * FROM users WHERE email = ${db.escape(req.fields.email)};`,
+//         (err, result) => {
+//             // user does not exists
+//             if (err) {
+//                 throw err;
+//                 return res.status(400).send({
+//                     msg: err,
+//                 });
+//             }
+//             if (!result.length) {
+//                 return res.status(401).send({
+//                     msg: "Email or password is incorrect!",
+//                 });
+//             }
+//             // check password
+//             bcrypt.compare(
+//                 req.fields.password,
+//                 result[0]["password"],
+//                 (bErr, bResult) => {
+//                     // wrong password
+//                     if (bErr) {
+//                         throw bErr;
+//                         return res.status(401).send({
+//                             msg: "Email or password is incorrect!",
+//                         });
+//                     }
+//                     if (bResult) {
+//                         const token = jwt.sign({ id: result[0].id },
+//                             "the-super-strong-secrect", { expiresIn: "1h" }
+//                         );
+//                         db.query(
+//                             `UPDATE users SET last_login = now() WHERE id = '${result[0].id}'`
+//                         );
+//                         return res.status(200).send({
+//                             msg: "Logged in!",
+//                             token,
+//                             user: result[0],
+//                         });
+//                     }
+//                     return res.status(401).send({
+//                         msg: "Username or password is incorrect!",
+//                     });
+//                 }
+//             );
+//         }
+//     );
+// });
+
+// app.post("/get-user", signupValidation, (req, res, next) => {
+//   if (
+//     !req.headers.authorization ||
+//     !req.headers.authorization.startsWith("Bearer") ||
+//     !req.headers.authorization.split(" ")[1]
+//   ) {
+//     return res.status(422).json({
+//       message: "Please provide the token",
+//     });f
+//   }
+//   const theToken = req.headers.authorization.split(" ")[1];
+//   const decoded = jwt.verify(theToken, "the-super-strong-secrect");
+//   db.query(
+//     "SELECT * FROM users where id=?",
+//     decoded.id,
+//     function (error, results, fields) {
+//       if (error) throw error;
+//       return res.send({
+//         error: false,
+//         data: results[0],
+//         message: "Fetch Successfully.",
+//       });
+//     }
+//   );
+// });
