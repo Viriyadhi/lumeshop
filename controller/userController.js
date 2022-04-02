@@ -87,7 +87,7 @@ exports.create = (req, res) => {
               }
               user.create(newUser).then((data) => {
                 res.status(201).send({
-                  msg: "The user has been registerd !",
+                  msg: "New user has been registerd !",
                 });
               });
             }
