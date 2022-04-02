@@ -1,5 +1,8 @@
 const { user } = require("../models");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { now } = require("moment");
+const moment = require("moment");
 
 exports.all = (req, res) => {
   user
@@ -104,6 +107,79 @@ exports.create = (req, res) => {
         }
       }
     });
+};
+
+exports.login = (req, res) => {
+  user
+    .findOne({
+      where: {
+        email: req.fields.email,
+      },
+    })
+    .then((data) => {
+      // user does not exists
+      if (!data) {
+        return res.status(401).send({
+          msg: "Email or password is incorrect!",
+        });
+      } else {
+        //check password
+        bcrypt.compare(req.fields.password, data.password, (bErr, bdata) => {
+          // wrong password
+          if (!bdata) {
+            return res.status(401).send({
+              msg: "Email or password is incorrect!",
+            });
+          }
+          if (bdata) {
+            const token = jwt.sign(
+              { id: data.id },
+              "the-super-strong-secrect",
+              {
+                expiresIn: "1h",
+              }
+            );
+            data
+              .update({
+                where: {
+                  updatedAt: new Date(),
+                },
+              })
+              .then((data) => {
+                user
+                  .findByPk(data.id, {
+                    attributes: {
+                      exclude: ["password"],
+                    },
+                  })
+                  .then((data) => {
+                    res.status(200).json({
+                      msg: "Login Successful",
+                      token: "Bearer " + token,
+                      data: data,
+                    });
+                  });
+              });
+          }
+        });
+      }
+    });
+};
+
+exports.auth = (req, res) => {
+  if (
+    !req.headers.authorization ||
+    !req.headers.authorization.startsWith("Bearer") ||
+    !req.headers.authorization.split(" ")[1]
+  ) {
+    return res.status(422).json({
+      message: "Please provide the token",
+    });
+  }
+  const token = req.headers.authorization.split(" ")[1];
+  const decoded = jwt.verify(token, "the-super-strong-secrect").then((data) => {
+    res.send(data);
+  });
 };
 
 exports.update = (req, res) => {
