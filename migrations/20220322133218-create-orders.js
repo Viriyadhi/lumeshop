@@ -18,7 +18,11 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 foreignkey: true,
             },
-            user_id: {
+            customer_id: {
+                type: Sequelize.INTEGER,
+                foreignkey: true,
+            },
+            reseller_id: {
                 type: Sequelize.INTEGER,
                 foreignkey: true,
             },
@@ -34,7 +38,7 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 foreignkey: true,
             },
-            jenis_pembayaran_id: {
+            payment_method_id: {
                 type: Sequelize.INTEGER,
                 foreignkey: true,
             },
