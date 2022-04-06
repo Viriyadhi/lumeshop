@@ -37,7 +37,7 @@ app.use(express.json());
 app.use(cors());
 app.listen(PORT);
 app.get("/", (req, res) => {
-  res.send("Hello World");
+    res.send("Hello World");
 });
 
 //get the static files from public folder
