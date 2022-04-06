@@ -73,6 +73,7 @@ exports.create = (req, res) => {
                                 username: req.fields.username,
                                 birth_date: req.fields.birth_date,
                                 phone_number: req.fields.phone_number,
+                                type_role: req.fields.type_role.toUpperCase(),
                                 createdAt: new Date(),
                                 updatedAt: new Date(),
                             };
@@ -80,6 +81,7 @@ exports.create = (req, res) => {
                                 !newUser.email ||
                                 !newUser.password ||
                                 !newUser.username ||
+                                !newUser.type_role ||
                                 !newUser.birth_date ||
                                 !newUser.phone_number
                             ) {

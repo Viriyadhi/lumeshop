@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.voucher, {as : 'voucher'})
+      this.belongsTo(models.customer, {as : 'user'})
+      this.belongsTo(models.reseller, {as : 'reseller'})
     }
   }
   has_voucher.init({

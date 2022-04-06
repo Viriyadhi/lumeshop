@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.category, {as : 'category'})
-      this.hasMany(models.roduct_img, {as : 'product_img'})
+      this.hasMany(models.product_img, {as : 'product_img'})
       this.hasMany(models.products_price, {as : 'products_price'})
     }
   }
