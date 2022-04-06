@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            this.belongsTo(models.reseller, {as : 'reseller'})
+            this.belongsTo(models.payment_methods, {as : 'payment_methods'})
         }
     }
     deposite.init({

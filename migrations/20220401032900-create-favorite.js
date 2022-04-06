@@ -11,6 +11,9 @@ module.exports = {
       products_id: {
         type: Sequelize.INTEGER
       },
+      customer_id: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

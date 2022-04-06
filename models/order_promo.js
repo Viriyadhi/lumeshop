@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            this.belongsTo(models.orders, {as : 'orders'})
+            this.belongsTo(models.voucher, {as : 'voucher'})
         }
     }
     order_promo.init({

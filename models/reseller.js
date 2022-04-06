@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            this.belongsTo(models.user, {as : 'user'})
+            this.hasMany(models.addresses, {as : 'addresses'})
+            this.hasOne(models.coins, {as : 'coins'})
+            this.hasMany(models.has_voucher, {as : 'has_voucher'})
+            this.belongsTo(models.orders, {as : 'orders'})
+            this.hasMany(models.deposite, { as : 'deposite'})
         }
     }
     reseller.init({
