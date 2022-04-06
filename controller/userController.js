@@ -177,9 +177,27 @@ exports.auth = (req, res) => {
     });
   }
   const token = req.headers.authorization.split(" ")[1];
-  const decoded = jwt.verify(token, "the-super-strong-secrect").then((data) => {
-    res.send(data);
-  });
+  const decoded = jwt.verify(token, "the-super-strong-secrect");
+  user
+    .findAll({
+      where: {
+        id: decoded.id,
+      },
+      attributes: {
+        exclude: ["password"],
+      },
+    })
+    .then((data) => {
+      if (data.length === 0) {
+        return res.status(401).json({
+          message: "Invalid token",
+        });
+      }
+      res.status(200).json({
+        message: "Successful",
+        data: data,
+      });
+    });
 };
 
 exports.update = (req, res) => {
