@@ -114,7 +114,7 @@ exports.login = (req, res) => {
     user
         .findOne({
             where: {
-                email: req.fields.email,
+                email: req.body.email,
             },
         })
         .then((data) => {
@@ -125,7 +125,7 @@ exports.login = (req, res) => {
                 });
             } else {
                 //check password
-                bcrypt.compare(req.fields.password, data.password, (bErr, bdata) => {
+                bcrypt.compare(req.body.password, data.password, (bErr, bdata) => {
                     // wrong password
                     if (!bdata) {
                         return res.status(401).send({

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const formidable = require("express-formidable");
 const bodyParser = require("body-parser");
@@ -6,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 const logger = require("./middleware/middleware");
 const userController = require("./controller/userController");
 const addressesController = require("./controller/addressesController");
@@ -31,7 +32,7 @@ const voucherController = require("./controller/voucherController");
 const depositeController = require("./controller/depositeController");
 
 app.use(logger);
-app.use(formidable());
+// app.use(formidable());
 app.use(express.json());
 app.use(cors());
 app.listen(PORT);
